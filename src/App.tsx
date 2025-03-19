@@ -1,0 +1,31 @@
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+
+import Users from "./pages/users";
+import Layout from "./components/layout";
+import UserCard from "./pages/userCard";
+
+function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Users />} />
+          <Route path="user/:id" element={<UserCard />} />
+        </Route>
+      </>
+    )
+  );
+
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
+}
+
+export default App;
