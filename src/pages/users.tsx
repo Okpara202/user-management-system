@@ -68,8 +68,8 @@ function Users() {
 
   return (
     <section className="container p-4 mx-auto font-poppins">
-      <div className="md:flex items-center mt-3 justify-between text-center ">
-        <div className="flex items-center justify-center">
+      <div className="md:flex items-center mt-3 justify-between text-center sticky top-0 bg-white pb-4">
+        <div className="flex items-center justify-center py-4 ">
           <h3 className="text-2xl mb-3 md:mb-0 font-bold text-blue-950">
             Manage users
             <Link
