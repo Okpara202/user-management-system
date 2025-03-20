@@ -44,9 +44,12 @@ function UserCard() {
           <h1 className="text-3xl font-bold">{user?.name}</h1>
           <p className="mt-2 text-lg">{user?.phone}</p>
 
-          <button className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black">
+          <Link
+            to="/add-user"
+            className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
+          >
             <FaEdit /> <span className="ml-3">Edit User info</span>
-          </button>
+          </Link>
         </div>
       </aside>
 
