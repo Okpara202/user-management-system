@@ -5,6 +5,7 @@ import { fetchUsers } from "../reduxManager/usersSlice";
 import Spinners from "../components/spinners";
 import { FaEdit, FaSearch } from "react-icons/fa";
 import UserList from "../components/userList";
+import { Link } from "react-router-dom";
 
 function Users() {
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -71,9 +72,12 @@ function Users() {
         <div className="flex items-center justify-center">
           <h3 className="text-2xl mb-3 md:mb-0 font-bold text-blue-950">
             Manage users
-            <button className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black">
+            <Link
+              to="add-user"
+              className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
+            >
               <FaEdit /> <span className="ml-3">Add new User</span>
-            </button>
+            </Link>
           </h3>
         </div>
         <div className="flex items-center justify-center border-2 border-gray-bg rounded-xl px-4 py-2 text-lg md:w-3/5">
