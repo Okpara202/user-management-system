@@ -45,7 +45,7 @@ function UserCard() {
           <p className="mt-2 text-lg">{user?.phone}</p>
 
           <Link
-            to="/add-user"
+            to={`/edit-user/${id}`}
             className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
           >
             <FaEdit /> <span className="ml-3">Edit User info</span>
