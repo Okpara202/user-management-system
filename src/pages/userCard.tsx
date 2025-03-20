@@ -17,15 +17,16 @@ function UserCard() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (!user) {
+    // fetch data incase state is lost or refreshed
+    if (!user && id) {
       dispatch(fetchUsers());
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, id]);
 
   if (!user) {
     return (
-      <div className="font-bold text-xl text-rose-600 text-center mt-10">
-        User {id} not found
+      <div className="container mx-auto font-bold text-3xl text-rose-600 px-2 flex flex-col items-center justify-center h-screen">
+        Specified User not found
       </div>
     );
   }
