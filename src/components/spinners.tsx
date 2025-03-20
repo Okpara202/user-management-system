@@ -12,7 +12,7 @@ function Spinners() {
   return (
     <div className="sweet-loading">
       <RotateLoader
-        color={"navy"}
+        color={"#f5772f"}
         loading={true}
         cssOverride={override}
         size={150}

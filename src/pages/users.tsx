@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AppDispatch, RootState } from "../reduxManager/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../reduxManager/usersSlice";
@@ -7,6 +7,8 @@ import { FaSearch } from "react-icons/fa";
 import UserList from "../components/userList";
 
 function Users() {
+  const searchRef = useRef<HTMLInputElement | null>(null);
+
   const { data, error, loading } = useSelector(
     (state: RootState) => state.fetchUser
   );
@@ -16,6 +18,11 @@ function Users() {
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
+
+  // Search icon shift focus to search bar
+  const handleSearchFocus = () => {
+    searchRef.current?.focus();
+  };
 
   // State for filtering by user name
   const [name, setName] = useState<string>("");
@@ -66,7 +73,7 @@ function Users() {
         </h3>
         <div className="flex items-center justify-center border-2 border-gray-bg rounded-xl px-4 py-2 text-lg md:w-3/5">
           <aside className="text-gray-text">
-            <FaSearch />
+            <FaSearch onClick={handleSearchFocus} />
           </aside>
           <input
             type="text"
@@ -76,6 +83,7 @@ function Users() {
             className="px-4 flex-1/4 border-0 outline-0"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            ref={searchRef}
           />
         </div>
       </div>
@@ -83,17 +91,17 @@ function Users() {
       <div className="overflow-x-auto mt-10">
         {filteredData.length === 0 ? (
           <div className="font-bold text-xl text-rose-600 text-center mt-10">
-            User {name} not found
+            User "{name}" not found
           </div>
         ) : (
           <table className="w-full table-auto border-collapse  shadow-md">
             <thead className=" text-gray-text text-xl">
-              <tr>
-                <th className="text-left px-4 py-2">S.No</th>
-                <th className="text-left px-4 py-2">Name</th>
-                <th className="text-left px-4 py-2">Email</th>
-                <th className="text-left px-4 py-2">Contact</th>
-                <th className="text-left px-4 py-2">Task</th>
+              <tr className="bg-gray-500">
+                <th className="text-left px-4 py-5 text-orange">S.No</th>
+                <th className="text-left px-4 py-5 text-orange">Name</th>
+                <th className="text-left px-4 py-5 text-orange">Email</th>
+                <th className="text-left px-4 py-5 text-orange">Contact</th>
+                <th className="text-left px-4 py-5 text-orange">Task</th>
               </tr>
             </thead>
             <tbody>{displayUsers}</tbody>

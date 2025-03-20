@@ -3,9 +3,10 @@ import { Iuser } from "../types/reduxType";
 
 function UserList({ data, index }: { data: Iuser; index: number }) {
   const navigate = useNavigate();
+
   return (
     <tr
-      onClick={() => navigate("")}
+      onClick={() => navigate(`user/${data.id}`)}
       className="hover:bg-gray-500 hover:text-white odd:bg-gray-100 hover:cursor-pointer rounded-lg"
     >
       <td className="px-4 py-3 ">{index + 1}</td>

@@ -10,7 +10,7 @@ const initialState: IinitialState = {
   error: null,
 };
 
-// Fetch data using createAsyncthunk
+// Fetch general user / all data using createAsyncThunk
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   const res = await axios.get<Iuser[]>(api);
   return res.data;
@@ -23,6 +23,7 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // Fetch all users
       .addCase(fetchUsers.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -33,7 +34,6 @@ const userSlice = createSlice({
           state.loading = false;
           state.error = null;
           state.data = action.payload;
-          console.log(action.payload);
         }
       )
       .addCase(fetchUsers.rejected, (state, action) => {
