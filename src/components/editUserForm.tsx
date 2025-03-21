@@ -25,13 +25,6 @@ function EditUserForm() {
       .string()
       .min(1, "Name is required")
       .min(3, "Enter your real name")
-      .regex(
-        /^([A-Z][a-z]+(?:[-'][A-Z][a-z]+)?)( [A-Z][a-z]+(?:[-'][A-Z][a-z]+)?)+$/,
-        {
-          message:
-            "Enter your full name, first letter of each name must be capital e.g (First Last)",
-        }
-      )
       .trim(),
     username: z
       .string()
@@ -54,7 +47,7 @@ function EditUserForm() {
       zipcode: z
         .string()
         .min(1, "Zipcode name is required")
-        .min(6, "Enter a valid zipcode")
+        .min(4, "Enter a valid zipcode")
         .trim(),
       geo: z.object({
         lat: z.string().min(1, "Latitude is required").trim(),
