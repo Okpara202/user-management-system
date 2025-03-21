@@ -3,16 +3,24 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IinitialState, Iuser } from "../types/reduxType";
 import { api } from "../types/reduxType";
 
+// Setup local storage for persisting state
+
+const loadUsersListFromLocalStorage = (): Iuser[] => {
+  const userList = localStorage.getItem("userList");
+  return userList ? JSON.parse(userList) : [];
+};
+
 // Setup up App initial state
 const initialState: IinitialState = {
   loading: false,
-  data: [],
+  data: loadUsersListFromLocalStorage(),
   error: null,
 };
 
 // Fetch general user / all data using createAsyncThunk
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   const res = await axios.get<Iuser[]>(api);
+  localStorage.setItem("userList", JSON.stringify(res.data));
   return res.data;
 });
 

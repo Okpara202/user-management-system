@@ -1,3 +1,5 @@
+import { FaEdit } from "react-icons/fa";
+
 function UserForm() {
   return (
     <form action="" className="mt-10">
@@ -131,31 +133,26 @@ function UserForm() {
           <p className="text-blue-950 font-medium">
             Place of Work <span>*</span>
           </p>
-          <input
-            type="text"
-            className="w-[100%] px-3 py-2 border-2 border-gray-600 rounded-lg"
-          />
+          <textarea className="w-[100%] px-3 py-2 border-2 border-gray-600 rounded-lg" />
         </label>
         <label className=" mt-4 col-span-2 md:col-span-1">
           <p className="text-blue-950 font-medium">
             Secondary task <span>*</span>
           </p>
-          <input
-            type="text"
-            className="w-[100%] px-3 py-2 border-2 border-gray-600 rounded-lg"
-          />
+          <textarea className="w-[100%] px-3 py-2 border-2 border-gray-600 rounded-lg" />
         </label>
 
         <label className="col-span-3 md:col-span-1">
           <p className="text-blue-950 mt-4 font-medium">
             Main task <span>*</span>
           </p>
-          <input
-            type="text"
-            className="w-[100%] px-3 py-2 border-2 border-gray-600 rounded-lg"
-          />
+          <textarea className="w-[100%] px-3 py-2 border-2 border-gray-600 rounded-lg" />
         </label>
       </aside>
+
+      <button className="mt-10 md:mt-15 bg-orange text-white px-10 py-2 rounded flex items-center mx-auto text-xl hover:bg-blue-950 hover:text-orange hover:font-black">
+        <FaEdit /> <span className="ml-3">Add New User</span>
+      </button>
     </form>
   );
 }

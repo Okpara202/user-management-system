@@ -17,8 +17,10 @@ function Users() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+    if (data.length === 0) {
+      dispatch(fetchUsers());
+    }
+  }, [dispatch, data.length]);
 
   // Search icon shift focus to search bar
   const handleSearchFocus = () => {
