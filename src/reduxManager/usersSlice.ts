@@ -3,35 +3,48 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IinitialState, Iuser } from "../types/reduxType";
 import { api } from "../types/reduxType";
 
-// Setup local storage for persisting state
-
+// Load users from local storage
 const loadUsersListFromLocalStorage = (): Iuser[] => {
   const userList = localStorage.getItem("userList");
   return userList ? JSON.parse(userList) : [];
 };
 
-// Setup up App initial state
 const initialState: IinitialState = {
   loading: false,
   data: loadUsersListFromLocalStorage(),
   error: null,
 };
 
-// Fetch general user / all data using createAsyncThunk
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   const res = await axios.get<Iuser[]>(api);
-  localStorage.setItem("userList", JSON.stringify(res.data));
   return res.data;
 });
 
-// Create slice
+// Create user slice
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    addUser: (state, action: PayloadAction<Omit<Iuser, "id">>) => {
+      const newUser: Iuser = {
+        id: Date.now() + Math.random() * 1000,
+        ...action.payload,
+      };
+
+      state.data.push(newUser);
+
+      // Persist State
+      localStorage.setItem("userList", JSON.stringify(state.data));
+    },
+    deleteUser: (state, action: PayloadAction<number>) => {
+      state.data = state.data.filter((user) => user.id !== action.payload);
+
+      // Persist State
+      localStorage.setItem("userList", JSON.stringify(state.data));
+    },
+  },
   extraReducers: (builder) => {
     builder
-      // Fetch all users
       .addCase(fetchUsers.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -42,6 +55,9 @@ const userSlice = createSlice({
           state.loading = false;
           state.error = null;
           state.data = action.payload;
+
+          // Persist fetched data
+          localStorage.setItem("userList", JSON.stringify(state.data));
         }
       )
       .addCase(fetchUsers.rejected, (state, action) => {
@@ -51,4 +67,5 @@ const userSlice = createSlice({
   },
 });
 
+export const { addUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,28 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../reduxManager/store";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { FaArrowCircleLeft, FaEdit, FaUserCircle } from "react-icons/fa";
-import { fetchUsers } from "../reduxManager/usersSlice";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  FaArrowCircleLeft,
+  FaEdit,
+  FaTrash,
+  FaUserCircle,
+} from "react-icons/fa";
+import { deleteUser, fetchUsers } from "../reduxManager/usersSlice";
 
 function UserCard() {
   const { id } = useParams<string>();
 
+  const navigate = useNavigate();
   // Get specific user data from state using id
-  const user = useSelector((state: RootState) =>
-    state.fetchUser.data.find((user) => user.id === Number(id))
-  );
-  console.log(user);
+  const data = useSelector((state: RootState) => state.fetchUser);
 
+  const user = data.data.find((user) => user.id === Number(id));
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     // fetch data incase state is lost or refreshed
-    if (!user && id) {
+    if (data.data.length === 0) {
       dispatch(fetchUsers());
     }
-  }, [dispatch, user, id]);
+  }, [dispatch, data.data.length]);
 
+  const handleDelete = () => {
+    // Delete the user
+    dispatch(deleteUser(Number(id)));
+    navigate("/");
+  };
   if (!user) {
     return (
       <div className="container mx-auto font-bold text-3xl text-rose-600 px-2 flex flex-col items-center justify-center h-screen">
@@ -34,7 +43,10 @@ function UserCard() {
   return (
     <section className="container mx-auto px-4 mt-10">
       <aside className="font-semibold flex bg-slate-300 flex-col md:flex-row justify-evenly items-center text-blue-950 p-10 rounded-4xl relative">
-        <Link to="/" className="absolute top-10 left-10 text-3xl text-white">
+        <Link
+          to="/"
+          className="absolute hover:text-gray-500 top-10 left-10 text-3xl text-white"
+        >
           <FaArrowCircleLeft />
         </Link>
         <div className="text-[20rem] text-white">
@@ -50,6 +62,12 @@ function UserCard() {
           >
             <FaEdit /> <span className="ml-3">Edit User info</span>
           </Link>
+          <button
+            onClick={handleDelete}
+            className="mx-auto mt-5 md:mt-10 bg-blue-950 text-white px-10 py-2 rounded flex items-center hover:bg-orange hover:text-white hover:font-black"
+          >
+            <FaTrash /> <span className="ml-3">Delete User</span>
+          </button>
         </div>
       </aside>
 

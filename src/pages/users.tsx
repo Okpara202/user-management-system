@@ -69,57 +69,60 @@ function Users() {
   }
 
   return (
-    <section className="container p-4 mx-auto font-poppins">
-      <div className="md:flex items-center mt-3 justify-between text-center sticky top-0 bg-white pb-4">
-        <div className="flex items-center justify-center py-4 ">
-          <h3 className="text-2xl mb-3 md:mb-0 font-bold text-blue-950">
-            Manage users
-            <Link
-              to="add-user"
-              className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
-            >
-              <FaEdit /> <span className="ml-3">Add new User</span>
-            </Link>
-          </h3>
-        </div>
-        <div className="flex items-center justify-center border-2 border-gray-bg rounded-xl px-4 py-2 text-lg md:w-3/5">
-          <aside className="text-gray-text">
-            <FaSearch onClick={handleSearchFocus} />
-          </aside>
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Search for user by name"
-            className="px-4 flex-1/4 border-0 outline-0"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            ref={searchRef}
-          />
-        </div>
-      </div>
-
-      <div className="overflow-x-auto mt-10">
-        {filteredData.length === 0 ? (
-          <div className="font-bold text-xl text-rose-600 text-center mt-10">
-            User "{name}" not found
+    <>
+      <section className="mt-10 sticky top-0 pb-6 bg-white ">
+        <div className="container mx-auto md:flex items-center mt-3 px-4 justify-between text-center  ">
+          <div className="flex items-center justify-center py-4 ">
+            <h3 className="text-2xl mb-3 md:mb-0 font-bold text-blue-950">
+              Manage users
+              <Link
+                to="add-user"
+                className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
+              >
+                <FaEdit /> <span className="ml-3">Add new User</span>
+              </Link>
+            </h3>
           </div>
-        ) : (
-          <table className="w-full table-auto border-collapse  shadow-md">
-            <thead className=" text-gray-text text-xl">
-              <tr className="bg-gray-500">
-                <th className="text-left px-4 py-5 text-orange">S.No</th>
-                <th className="text-left px-4 py-5 text-orange">Name</th>
-                <th className="text-left px-4 py-5 text-orange">Email</th>
-                <th className="text-left px-4 py-5 text-orange">Contact</th>
-                <th className="text-left px-4 py-5 text-orange">Task</th>
-              </tr>
-            </thead>
-            <tbody>{displayUsers}</tbody>
-          </table>
-        )}
-      </div>
-    </section>
+          <div className="flex items-center justify-center border-2 border-gray-bg rounded-xl px-4 py-2 text-lg md:w-3/5">
+            <aside className="text-gray-text">
+              <FaSearch onClick={handleSearchFocus} />
+            </aside>
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="Search for user by name"
+              className="px-4 flex-1/4 border-0 outline-0"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              ref={searchRef}
+            />
+          </div>
+        </div>
+      </section>
+      <section className="container p-4 mt-2 mx-auto font-poppins">
+        <div className="overflow-x-auto">
+          {filteredData.length === 0 ? (
+            <div className="font-bold text-xl text-rose-600 text-center mt-10">
+              User "{name}" not found
+            </div>
+          ) : (
+            <table className="w-full table-auto border-collapse  shadow-md">
+              <thead className=" text-gray-text text-xl">
+                <tr className="bg-gray-500">
+                  <th className="text-left px-4 py-5 text-orange">S.No</th>
+                  <th className="text-left px-4 py-5 text-orange">Name</th>
+                  <th className="text-left px-4 py-5 text-orange">Email</th>
+                  <th className="text-left px-4 py-5 text-orange">Contact</th>
+                  <th className="text-left px-4 py-5 text-orange">Task</th>
+                </tr>
+              </thead>
+              <tbody>{displayUsers}</tbody>
+            </table>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
 
