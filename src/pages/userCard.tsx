@@ -65,19 +65,20 @@ function UserCard() {
         <div className="text-center mt-4 md:mt-0 ">
           <h1 className="text-3xl font-bold">{user?.name}</h1>
           <p className="mt-2 text-lg">{user?.phone}</p>
-
-          <Link
-            to={`/edit-user/${id}`}
-            className="mt-5 md:mt-10 bg-orange text-white px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
-          >
-            <FaEdit /> <span className="ml-3">Edit User info</span>
-          </Link>
-          <button
-            onClick={handleDelete}
-            className="mx-auto mt-5 md:mt-10 bg-blue-950 text-white px-10 py-2 rounded flex items-center hover:bg-orange hover:text-white hover:font-black"
-          >
-            <FaTrash /> <span className="ml-3">Delete User</span>
-          </button>
+          <div className="grid grid-cols-2 gap-5">
+            <Link
+              to={`/edit-user/${id}`}
+              className="mt-5 md:mt-10 bg-orange text-white px-2 lg:px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
+            >
+              <FaEdit /> <span className="ml-3">Edit User info</span>
+            </Link>
+            <button
+              onClick={handleDelete}
+              className="mx-auto mt-5 md:mt-10 bg-gray-500 text-white px-2 lg:px-10 py-2 rounded flex items-center hover:bg-blue-950 hover:text-orange hover:font-black"
+            >
+              <FaTrash /> <span className="ml-3">Delete User</span>
+            </button>
+          </div>
         </div>
       </aside>
 
