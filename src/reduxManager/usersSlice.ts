@@ -15,12 +15,12 @@ const initialState: IinitialState = {
   error: null,
 };
 
+// Async action to fetch users from API
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   const res = await axios.get<Iuser[]>(api);
   return res.data;
 });
 
-// Create user slice
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -30,16 +30,27 @@ const userSlice = createSlice({
         id: Date.now() + Math.random() * 1000,
         ...action.payload,
       };
-
       state.data.push(newUser);
 
-      // Persist State
+      // Persist State to localStorage
       localStorage.setItem("userList", JSON.stringify(state.data));
+    },
+    editUser: (state, action: PayloadAction<Iuser>) => {
+      const index = state.data.findIndex(
+        (user) => user.id === action.payload.id
+      );
+
+      if (index !== -1) {
+        state.data[index] = { ...action.payload };
+
+        // Persist updated state
+        localStorage.setItem("userList", JSON.stringify(state.data));
+      }
     },
     deleteUser: (state, action: PayloadAction<number>) => {
       state.data = state.data.filter((user) => user.id !== action.payload);
 
-      // Persist State
+      // Persist updated state
       localStorage.setItem("userList", JSON.stringify(state.data));
     },
   },
@@ -56,7 +67,7 @@ const userSlice = createSlice({
           state.error = null;
           state.data = action.payload;
 
-          // Persist fetched data
+          // persist state
           localStorage.setItem("userList", JSON.stringify(state.data));
         }
       )
@@ -67,5 +78,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { addUser, deleteUser } = userSlice.actions;
+export const { addUser, deleteUser, editUser } = userSlice.actions;
 export default userSlice.reducer;

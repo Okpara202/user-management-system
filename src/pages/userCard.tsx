@@ -29,8 +29,18 @@ function UserCard() {
 
   const handleDelete = () => {
     // Delete the user
-    dispatch(deleteUser(Number(id)));
-    navigate("/");
+
+    const assureDelete = confirm(
+      `Do you want to delete ${user?.name} from the database`
+    );
+
+    if (assureDelete) {
+      dispatch(deleteUser(Number(id)));
+      navigate("/");
+      alert(`${user?.name} Deleted`);
+    } else {
+      return;
+    }
   };
   if (!user) {
     return (

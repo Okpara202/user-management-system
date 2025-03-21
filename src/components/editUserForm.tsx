@@ -4,15 +4,23 @@ import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../reduxManager/store";
-import { addUser } from "../reduxManager/usersSlice";
-import { useNavigate } from "react-router-dom";
+import { AppDispatch, RootState } from "../reduxManager/store";
+import { editUser } from "../reduxManager/usersSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 function EditUserForm() {
+  const { id } = useParams<string>();
+
+  // Get specific user data from state using id
+  const data = useSelector((state: RootState) => state.fetchUser);
+
+  const user = data.data.find((user) => user.id === Number(id));
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
   // Zod validation for adding users
-  const formSchema: ZodType<Omit<Iuser, "id">> = z.object({
+  const formSchema: ZodType<Iuser> = z.object({
+    id: z.number(),
     name: z
       .string()
       .min(1, "Name is required")
@@ -37,11 +45,7 @@ function EditUserForm() {
         .min(1, "Street name is required")
         .min(3, "Enter a valid street name")
         .trim(),
-      suite: z
-        .string()
-        .min(1, "Suite number is required")
-        .regex(/^\d+$/, { message: "Only numbers are allowed" })
-        .trim(),
+      suite: z.string().min(1, "Suite number is required").trim(),
       city: z
         .string()
         .min(1, "City name is required")
@@ -50,31 +54,20 @@ function EditUserForm() {
       zipcode: z
         .string()
         .min(1, "Zipcode name is required")
-        .regex(/^\d+$/, { message: "Only numbers are allowed" })
         .min(6, "Enter a valid zipcode")
         .trim(),
       geo: z.object({
-        lat: z
-          .string()
-          .min(1, "Latitude is required")
-          .trim()
-          .regex(/^\d+$/, { message: "Only numbers are allowed" }),
-
-        lng: z
-          .string()
-          .min(1, "Longitude is required")
-          .regex(/^\d+$/, { message: "Only numbers are allowed" })
-          .trim(),
+        lat: z.string().min(1, "Latitude is required").trim(),
+        lng: z.string().min(1, "Longitude is required").trim(),
       }),
     }),
     phone: z
       .string()
       .min(1, "Mobile number is required")
-      .regex(/^\d+$/, { message: "Only numbers are allowed" })
       .min(10, "Invalid number")
 
       .trim(),
-    website: z.string().url("Invalid website URL").trim(),
+    website: z.string().trim(),
     company: z.object({
       name: z
         .string()
@@ -98,13 +91,26 @@ function EditUserForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Omit<Iuser, "id">>({ resolver: zodResolver(formSchema) });
+  } = useForm<Iuser>({
+    resolver: zodResolver(formSchema),
+    defaultValues: user,
+  });
 
-  const submitForm = (data: Omit<Iuser, "id">) => {
+  const submitForm = (data: Iuser) => {
     // submit function
-    dispatch(addUser(data));
-    navigate("/");
+
+    const confirmUpdate = confirm(`Do you want to Update ${user?.name} info`);
+
+    if (confirmUpdate) {
+      const updatedUser = { ...data, id: data.id };
+      dispatch(editUser(updatedUser));
+      navigate("/");
+      alert(`${data?.name} updated`);
+    } else {
+      return;
+    }
   };
+
   return (
     <form onSubmit={handleSubmit(submitForm)} className="mt-10">
       <p className="text-xl text-orange font-medium -mb-3">Personal Info</p>
@@ -388,7 +394,7 @@ function EditUserForm() {
       </aside>
 
       <button className="mt-10 md:mt-15 bg-orange text-white px-10 py-2 rounded flex items-center mx-auto text-xl hover:bg-blue-950 hover:text-orange hover:font-black">
-        <FaEdit /> <span className="ml-3">Add New User</span>
+        <FaEdit /> <span className="ml-3">Edit User</span>
       </button>
     </form>
   );

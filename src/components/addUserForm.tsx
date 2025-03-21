@@ -102,8 +102,18 @@ function AddUserForm() {
 
   const submitForm = (data: Omit<Iuser, "id">) => {
     // submit function
-    dispatch(addUser(data));
-    navigate("/");
+
+    const confirmUpdate = confirm(
+      `Do you want to add ${data.name} to the database`
+    );
+
+    if (confirmUpdate) {
+      dispatch(addUser(data));
+      navigate("/");
+      alert(`${data?.name} succesfully added`);
+    } else {
+      return;
+    }
   };
   return (
     <form onSubmit={handleSubmit(submitForm)} className="mt-10">
