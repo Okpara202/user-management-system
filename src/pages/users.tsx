@@ -102,19 +102,23 @@ function Users() {
       </section>
       <section className="container p-4 mt-2 mx-auto font-poppins">
         <div className="overflow-x-auto">
+          <div className="text-center  mb-5 text-xl">
+            <p>Welcome Back Admin</p>
+            <p>Click on a user to Edit</p>
+          </div>
           {filteredData.length === 0 ? (
             <div className="font-bold text-xl text-rose-600 text-center mt-10">
               User "{name}" not found
             </div>
           ) : (
             <table className="w-full table-auto border-collapse  shadow-md">
-              <thead className=" text-gray-text text-xl">
+              <thead className="  text-xl">
                 <tr className="bg-gray-500">
-                  <th className="text-left px-4 py-5 text-orange">S.No</th>
-                  <th className="text-left px-4 py-5 text-orange">Name</th>
-                  <th className="text-left px-4 py-5 text-orange">Email</th>
-                  <th className="text-left px-4 py-5 text-orange">Contact</th>
-                  <th className="text-left px-4 py-5 text-orange">Task</th>
+                  <th className="text-left px-4 py-5">S.No</th>
+                  <th className="text-left px-4 py-5">Name</th>
+                  <th className="text-left px-4 py-5">Email</th>
+                  <th className="text-left px-4 py-5">Contact</th>
+                  <th className="text-left px-4 py-5">Task</th>
                 </tr>
               </thead>
               <tbody>{displayUsers}</tbody>

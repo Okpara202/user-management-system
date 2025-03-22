@@ -4,14 +4,14 @@ import { IinitialState, Iuser } from "../types/reduxType";
 import { api } from "../types/reduxType";
 
 // Load users from local storage
-const loadUsersListFromLocalStorage = (): Iuser[] => {
-  const userList = localStorage.getItem("userList");
+const loadUsersFromSessionStorage = (): Iuser[] => {
+  const userList = sessionStorage.getItem("userList");
   return userList ? JSON.parse(userList) : [];
 };
 
 const initialState: IinitialState = {
   loading: false,
-  data: loadUsersListFromLocalStorage(),
+  data: loadUsersFromSessionStorage(),
   error: null,
 };
 
@@ -32,8 +32,8 @@ const userSlice = createSlice({
       };
       state.data.push(newUser);
 
-      // Persist State to localStorage
-      localStorage.setItem("userList", JSON.stringify(state.data));
+      // Persist State to sessionStorage
+      sessionStorage.setItem("userList", JSON.stringify(state.data));
     },
     editUser: (state, action: PayloadAction<Iuser>) => {
       const index = state.data.findIndex(
@@ -44,14 +44,14 @@ const userSlice = createSlice({
         state.data[index] = { ...action.payload };
 
         // Persist updated state
-        localStorage.setItem("userList", JSON.stringify(state.data));
+        sessionStorage.setItem("userList", JSON.stringify(state.data));
       }
     },
     deleteUser: (state, action: PayloadAction<number>) => {
       state.data = state.data.filter((user) => user.id !== action.payload);
 
       // Persist updated state
-      localStorage.setItem("userList", JSON.stringify(state.data));
+      sessionStorage.setItem("userList", JSON.stringify(state.data));
     },
   },
   extraReducers: (builder) => {
@@ -68,7 +68,7 @@ const userSlice = createSlice({
           state.data = action.payload;
 
           // persist state
-          localStorage.setItem("userList", JSON.stringify(state.data));
+          sessionStorage.setItem("userList", JSON.stringify(state.data));
         }
       )
       .addCase(fetchUsers.rejected, (state, action) => {
