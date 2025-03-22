@@ -102,9 +102,9 @@ function Users() {
       </section>
       <section className="container p-4 mt-2 mx-auto font-poppins">
         <div className="overflow-x-auto">
-          <div className="text-center  mb-5 text-xl">
+          <div className="text-center  mb-5 text-xl text-slate-600 font-medium font-mono  leading-7">
             <p>Welcome Back Admin</p>
-            <p>Click on a user to Edit</p>
+            <p>Click on a user to manage/Edit</p>
           </div>
           {filteredData.length === 0 ? (
             <div className="font-bold text-xl text-rose-600 text-center mt-10">
@@ -113,12 +113,12 @@ function Users() {
           ) : (
             <table className="w-full table-auto border-collapse  shadow-md">
               <thead className="  text-xl">
-                <tr className="bg-gray-500">
-                  <th className="text-left px-4 py-5">S.No</th>
-                  <th className="text-left px-4 py-5">Name</th>
-                  <th className="text-left px-4 py-5">Email</th>
-                  <th className="text-left px-4 py-5">Contact</th>
-                  <th className="text-left px-4 py-5">Task</th>
+                <tr className="bg-slate-600">
+                  <th className="text-left px-4 py-5 text-white">S.No</th>
+                  <th className="text-left px-4 py-5 text-white">Name</th>
+                  <th className="text-left px-4 py-5 text-white">Email</th>
+                  <th className="text-left px-4 py-5 text-white">Contact</th>
+                  <th className="text-left px-4 py-5 text-white">Task</th>
                 </tr>
               </thead>
               <tbody>{displayUsers}</tbody>
