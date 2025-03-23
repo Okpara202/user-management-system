@@ -4,7 +4,7 @@ function NotFound() {
   const navigate = useNavigate();
   return (
     <div className="container  mx-auto flex items-center justify-center h-[80vh] flex-col ">
-      <h1 className="text-4xl font-bold text-blue-950">404 </h1>
+      <h1 className="text-4xl font-bold text-blue-950">404 Error </h1>
       <p className="text-lg font-medium mt-5 text-gray-text">Page not found</p>
       <button
         onClick={() => navigate("/")}
