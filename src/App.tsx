@@ -18,7 +18,7 @@ function App() {
       <>
         <Route path="/" element={<Layout />}>
           <Route index element={<Users />} />
-          <Route path="user/:id" element={<UserCard />} />
+          <Route path="users/:id" element={<UserCard />} />
           <Route path="add-user" element={<AddUser />} />
           <Route path="edit-user/:id" element={<EditUser />} />
           <Route path="*" element={<NotFound />} />

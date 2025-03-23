@@ -6,7 +6,7 @@ function UserList({ data, index }: { data: Iuser; index: number }) {
 
   return (
     <tr
-      onClick={() => navigate(`user/${data.id}`)}
+      onClick={() => navigate(`users/${data.id}`)}
       className="hover:bg-gray-500 hover:text-white odd:bg-gray-100 hover:cursor-pointer rounded-lg"
       title={`Click to view ${data.name}`}
     >
