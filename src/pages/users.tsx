@@ -102,12 +102,15 @@ function Users() {
       </section>
       <section className="container p-4 mt-2 mx-auto font-poppins">
         <div className="overflow-x-auto">
-          <div className="text-center  mb-5 text-xl text-slate-600 font-medium font-mono  leading-7">
-            <p>Welcome Back Admin</p>
-            <p>Click on a user to manage/Edit</p>
-          </div>
+          {filteredData.length > 0 && (
+            <div className="text-center   mb-10 text-xl  leading-9">
+              <p>Welcome Back Admin.</p>
+
+              <p>Click on a user to manage/Edit</p>
+            </div>
+          )}
           {filteredData.length === 0 ? (
-            <div className="font-bold text-xl text-rose-600 text-center mt-10">
+            <div className="text-xl  text-center mt-10">
               User "{name}" not found
             </div>
           ) : (

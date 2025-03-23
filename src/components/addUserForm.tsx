@@ -126,7 +126,7 @@ function AddUserForm() {
           <input
             type="text"
             placeholder="First Letter of each name must be capital eg. Favour Okpara"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             {...register("name")}
             onInput={(e) => {
               // capitalize first letter of each word
@@ -148,7 +148,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700 px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. Okpara202"
             {...register("username")}
           />
@@ -165,7 +165,7 @@ function AddUserForm() {
           </p>
           <input
             type="email"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             {...register("email")}
             placeholder="Eg. okpara@gmail.com"
           />
@@ -182,7 +182,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. 0494820840"
             {...register("phone")}
           />
@@ -198,7 +198,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. https://okpara.com"
             {...register("website")}
           />
@@ -220,7 +220,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. Parklane"
             {...register("address.street")}
             // capitalize first letter of each word
@@ -243,7 +243,7 @@ function AddUserForm() {
           <input
             type="text"
             placeholder="223"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             {...register("address.suite")}
           />
           {errors?.address?.suite && (
@@ -259,7 +259,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. Abakaliki"
             {...register("address.city")}
             // capitalize first letter of each word
@@ -282,7 +282,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. 00000000"
             {...register("address.zipcode")}
             // capitalize first letter of each word
@@ -300,7 +300,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. 90"
             {...register("address.geo.lat")}
             // capitalize first letter of each word
@@ -317,7 +317,7 @@ function AddUserForm() {
           </p>
           <input
             type="text"
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. 90"
             {...register("address.geo.lng")}
           />
@@ -336,7 +336,7 @@ function AddUserForm() {
             Place of Work <span>*</span>
           </p>
           <textarea
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. Google"
             {...register("company.name")}
             // capitalize first letter of each word
@@ -357,7 +357,7 @@ function AddUserForm() {
             Secondary task <span>*</span>
           </p>
           <textarea
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. Updating hard Disk drive"
             {...register("company.bs")}
             // capitalize first letter of each word
@@ -379,7 +379,7 @@ function AddUserForm() {
             Main task <span>*</span>
           </p>
           <textarea
-            className="w-[100%] font-mono font-medium focus:outline-orange text-gray-700  px-3 py-2 border-2 border-gray-600 rounded-lg"
+            className="w-[100%] font-medium focus:outline-orange  px-3 py-2 border-2 border-gray-600 rounded-lg"
             placeholder="Eg. Maintaining server room"
             {...register("company.catchPhrase")}
             // capitalize first letter of each word
